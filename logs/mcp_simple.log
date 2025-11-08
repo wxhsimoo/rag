@@ -1,0 +1,209 @@
+2025-09-05 16:03:36,192 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:03:36,193 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:03:36,194 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:03:36,194 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:03:36,227 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:03:36,592 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:03:36,610 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:03:36,616 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:03:36,617 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 16:03:36,629 - src.presentation.mcp_adapter.server - ERROR - MCP服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:03:36,629 - __main__ - ERROR - 服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:04:17,508 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:04:17,509 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:04:17,510 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:04:17,510 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:04:17,549 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:04:17,619 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:04:17,636 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:04:17,638 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:04:17,639 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 16:04:17,657 - src.presentation.mcp_adapter.server - ERROR - MCP服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:04:17,658 - __main__ - ERROR - 服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:04:57,972 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:04:57,973 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:04:57,973 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:04:57,974 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:04:58,009 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:04:58,063 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:04:58,078 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:04:58,080 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:04:58,081 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 16:04:58,092 - src.presentation.mcp_adapter.server - ERROR - MCP服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:04:58,093 - __main__ - ERROR - 服务器启动失败: unhandled errors in a TaskGroup (1 sub-exception)
+2025-09-05 16:06:31,285 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:06:31,286 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:06:31,286 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:06:31,287 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:06:31,318 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:06:31,365 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:06:31,383 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:06:31,385 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:06:31,386 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 16:19:30,196 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:19:30,197 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:19:30,197 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:19:30,198 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:19:30,226 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:19:30,275 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:19:30,290 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:19:30,293 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:19:30,294 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 16:30:38,106 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 16:30:38,107 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 16:30:38,108 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 16:30:38,108 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 16:30:38,138 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 16:30:38,410 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 16:30:38,423 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:30:38,425 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 16:30:38,433 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 17:05:20,291 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 17:05:20,292 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 17:05:20,292 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 17:05:20,292 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 17:05:20,318 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 17:05:20,618 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 17:05:20,630 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:05:20,631 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:05:20,632 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 17:05:22,702 - __main__ - INFO - 启动简化MCP服务器...
+2025-09-05 17:05:22,703 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成
+2025-09-05 17:05:22,703 - src.presentation.mcp_adapter.server - INFO - 启动MCP服务器...
+2025-09-05 17:05:22,704 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 17:05:22,735 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 17:05:23,039 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 17:05:23,070 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:05:23,071 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:05:23,072 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 17:23:30,253 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8001
+2025-09-05 17:23:30,289 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成，将在端口8001启动HTTP服务
+2025-09-05 17:23:30,291 - src.presentation.mcp_adapter.server - INFO - 启动MCP HTTP服务器，端口: 8001
+2025-09-05 17:23:30,291 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 17:23:30,326 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 17:23:30,460 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 17:23:30,479 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:23:30,485 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:23:30,486 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-05 17:23:30,487 - src.presentation.mcp_adapter.server - ERROR - MCP HTTP服务器启动失败: 'CORSMiddleware' object has no attribute 'mount'
+2025-09-05 17:23:30,487 - __main__ - ERROR - 服务器启动失败: 'CORSMiddleware' object has no attribute 'mount'
+2025-09-05 17:24:20,027 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8001
+2025-09-05 17:24:20,064 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成，将在端口8001启动HTTP服务
+2025-09-05 17:24:20,065 - src.presentation.mcp_adapter.server - INFO - 启动MCP HTTP服务器，端口: 8001
+2025-09-05 17:24:20,065 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-05 17:24:20,188 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-05 17:24:20,290 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-05 17:24:20,312 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:24:20,316 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-05 17:24:20,318 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-06 10:54:53,290 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 10:54:53,327 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成，将在端口8000启动HTTP服务
+2025-09-06 10:54:53,328 - src.presentation.mcp_adapter.server - INFO - 启动 SSE MCP 服务器，端口: 8000
+2025-09-06 10:54:53,329 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-06 10:54:53,442 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 10:54:53,541 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 10:54:53,556 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 10:54:53,561 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 10:54:53,563 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-06 11:13:51,688 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:13:51,724 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成，将在端口8000启动HTTP服务
+2025-09-06 11:13:51,724 - src.presentation.mcp_adapter.server - INFO - 启动 SSE MCP 服务器，端口: 8000
+2025-09-06 11:13:51,725 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-06 11:13:51,861 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:13:52,313 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:13:52,330 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:13:52,357 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:13:52,358 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-06 11:16:17,169 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:16:17,218 - src.presentation.mcp_adapter.server - INFO - 简化MCP服务器初始化完成，将在端口8000启动HTTP服务
+2025-09-06 11:16:17,218 - src.presentation.mcp_adapter.server - INFO - 启动 SSE MCP 服务器，端口: 8000
+2025-09-06 11:16:17,219 - src.presentation.mcp_adapter.server - INFO - 初始化RAG服务...
+2025-09-06 11:16:17,391 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:16:17,446 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:16:17,468 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:16:17,471 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:16:17,472 - src.presentation.mcp_adapter.server - INFO - RAG服务初始化完成
+2025-09-06 11:25:18,600 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:25:18,630 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:25:18,630 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:25:18,743 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:25:18,775 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:25:18,789 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:25:18,791 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:25:18,792 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:26:25,534 - RAGPipelineService - INFO - 处理查询: 婴儿八个月大可以吃鸡蛋吗？
+2025-09-06 11:26:44,248 - RAGPipelineService - INFO - 查询处理完成，耗时 18.71 秒
+2025-09-06 11:31:48,073 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:31:48,106 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:31:48,106 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:31:48,220 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:31:48,256 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:31:48,270 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:31:48,272 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:31:48,273 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:32:42,322 - RAGPipelineService - INFO - 处理查询: 婴儿八个月大可以吃鸡蛋吗？
+2025-09-06 11:33:04,374 - RAGPipelineService - INFO - 查询处理完成，耗时 22.05 秒
+2025-09-06 11:33:41,484 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:33:41,518 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:33:41,519 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:33:41,629 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:33:41,667 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:33:41,681 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:33:41,683 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:33:41,684 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:35:10,149 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:35:10,181 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:35:10,181 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:35:10,328 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:35:10,369 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:35:10,387 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:35:10,390 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:35:10,390 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:38:38,067 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:38:38,109 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:38:38,110 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:38:38,263 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:38:38,388 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:38:38,460 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:38:38,487 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:38:38,526 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:40:40,055 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:40:40,096 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:40:40,097 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:40:40,229 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:40:40,347 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:40:40,363 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:40:40,369 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:40:40,371 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:42:23,024 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:42:23,055 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:42:23,056 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:42:23,175 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:42:23,209 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:42:23,223 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:42:23,224 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:42:23,225 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:43:13,411 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:43:13,444 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:43:13,445 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:43:13,568 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:43:13,607 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:43:13,625 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:43:13,626 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:43:13,627 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:43:59,251 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:43:59,290 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:43:59,291 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:43:59,436 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:43:59,477 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:43:59,493 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:43:59,495 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:43:59,496 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成
+2025-09-06 11:45:44,917 - __main__ - INFO - 启动MCP HTTP服务器，端口: 8000
+2025-09-06 11:45:44,951 - src.presentation.mcp_adapter.server - INFO - SimpleMCPServer 初始化完成，端口 8000
+2025-09-06 11:45:44,952 - src.presentation.mcp_adapter.server - INFO - 初始化 RAG 服务...
+2025-09-06 11:45:45,069 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2025-09-06 11:45:45,110 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2025-09-06 11:45:45,125 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:45:45,128 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2025-09-06 11:45:45,129 - src.presentation.mcp_adapter.server - INFO - RAG 服务初始化完成

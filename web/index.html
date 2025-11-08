@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文件管理与索引构建</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header>
+    <h1>文件管理与索引构建</h1>
+    <div class="env">
+      <label for="baseUrl">后端地址：</label>
+      <input id="baseUrl" type="text" value="http://localhost:8000" />
+      <button id="applyBaseUrl">应用</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 文件管理表格（第一个 table 页面） -->
+    <section>
+      <div class="section-header">
+        <h2>文件管理</h2>
+        <div class="actions">
+          <button id="refreshListBtn">刷新列表</button>
+          <button id="initIndexBtn" class="primary">构建索引</button>
+        </div>
+      </div>
+
+      <div class="upload">
+        <h3>上传文件</h3>
+        <form id="uploadForm">
+          <div class="form-row">
+            <label for="fileInput">选择文件：</label>
+            <input id="fileInput" type="file" required />
+          </div>
+          <div class="form-row">
+            <label for="docType">文档类型（可选）：</label>
+            <input id="docType" type="text" placeholder="例如 .txt/.md/.pdf" />
+          </div>
+          <div class="form-row">
+            <label for="sourcePath">保存文件名（可选）：</label>
+            <input id="sourcePath" type="text" placeholder="默认使用上传文件名" />
+          </div>
+          <div class="form-row">
+            <label for="metadata">元数据 JSON（可选）：</label>
+            <textarea id="metadata" rows="4" placeholder='例如 {"category": "knowledge"}'></textarea>
+          </div>
+          <div class="form-row">
+            <button type="submit" class="primary">上传</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="filesTable">
+          <thead>
+            <tr>
+              <th>文档ID</th>
+              <th>文件名</th>
+              <th>大小(字节)</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 动态填充 -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 索引结果/信息（第二个 table 页面） -->
+    <section>
+      <div class="section-header">
+        <h2>索引结果</h2>
+      </div>
+      <div class="table-wrapper">
+        <table id="indexResultTable">
+          <thead>
+            <tr>
+              <th>字段</th>
+              <th>值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 动态填充：显示 /index/init 的返回结果 -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrapper" id="docDetailWrapper" style="display:none;">
+        <h3>文档详情</h3>
+        <table id="docDetailTable">
+          <thead>
+            <tr>
+              <th>字段</th>
+              <th>值</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>前端独立项目，调用后端 API：/documents, /index/init</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

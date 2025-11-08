@@ -1,0 +1,302 @@
+[MASTER]
+# 指定要加载的插件
+load-plugins=
+
+# 使用多个进程来加速Pylint
+jobs=1
+
+# 控制缓存的使用
+persistent=yes
+
+# 缓存目录
+cache-size=500
+
+# 忽略的文件和目录
+ignore=CVS,
+       .git,
+       __pycache__,
+       .pytest_cache,
+       .mypy_cache,
+       build,
+       dist,
+       *.egg-info,
+       .venv,
+       venv,
+       migrations
+
+# 忽略的文件模式
+ignore-patterns=test_.*\.py,
+                .*_test\.py,
+                conftest\.py
+
+[MESSAGES CONTROL]
+# 禁用的检查项
+disable=raw-checker-failed,
+        bad-inline-option,
+        locally-disabled,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        use-symbolic-message-instead,
+        # 以下是根据项目需要禁用的检查
+        missing-docstring,
+        too-few-public-methods,
+        too-many-arguments,
+        too-many-locals,
+        too-many-branches,
+        too-many-statements,
+        too-many-instance-attributes,
+        line-too-long,  # 由Black处理
+        import-error,   # 在某些环境下可能误报
+        no-name-in-module,  # 动态导入可能误报
+        # 异步相关
+        unused-argument,
+        broad-except,
+        # 类型注解相关
+        unsubscriptable-object,
+        unsupported-membership-test
+
+# 启用的检查项
+enable=c-extension-no-member
+
+[REPORTS]
+# 设置输出格式
+output-format=text
+
+# 报告中包含的信息
+reports=no
+
+# 评分显示
+score=yes
+
+[REFACTORING]
+# 最大嵌套块数
+max-nested-blocks=5
+
+# 从不返回的函数
+never-returning-functions=sys.exit
+
+[BASIC]
+# 命名风格
+# 好的变量名
+good-names=i,
+           j,
+           k,
+           ex,
+           Run,
+           _,
+           id,
+           db,
+           ai,
+           qa,
+           lr,  # learning rate
+           df,  # dataframe
+           dt,  # datetime
+           fp,  # file path
+           fn,  # function
+           rv   # return value
+
+# 坏的变量名
+bad-names=foo,
+          bar,
+          baz,
+          toto,
+          tutu,
+          tata
+
+# 包含数字的名称
+include-naming-hint=no
+
+# 变量名正则表达式
+variable-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 常量名正则表达式
+const-rgx=(([A-Z_][A-Z0-9_]*)|(__.*__))$
+
+# 属性名正则表达式
+attr-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 参数名正则表达式
+argument-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 类属性名正则表达式
+class-attribute-rgx=([A-Za-z_][A-Za-z0-9_]{2,30}|(__.*__))$
+
+# 内联变量名正则表达式
+inlinevar-rgx=[A-Za-z_][A-Za-z0-9_]*$
+
+# 类名正则表达式
+class-rgx=[A-Z_][a-zA-Z0-9]+$
+
+# 函数名正则表达式
+function-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 方法名正则表达式
+method-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 模块名正则表达式
+module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
+
+# 文档字符串最小长度
+docstring-min-length=-1
+
+[FORMAT]
+# 最大行长度
+max-line-length=88
+
+# 忽略长行的正则表达式
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+
+# 单行if语句
+single-line-if-stmt=no
+
+# 单行类语句
+single-line-class-stmt=no
+
+# 最大模块行数
+max-module-lines=1000
+
+# 缩进字符串
+indent-string='    '
+
+# 缩进后的续行
+indent-after-paren=4
+
+# 期望的行结束格式
+expected-line-ending-format=
+
+[LOGGING]
+# 日志模块的格式
+logging-format-style=old
+
+# 日志模块
+logging-modules=logging
+
+[MISCELLANEOUS]
+# 注释中的TODO等标记
+notes=FIXME,
+      XXX,
+      TODO
+
+[SIMILARITIES]
+# 最小相似行数
+min-similarity-lines=4
+
+# 忽略注释
+ignore-comments=yes
+
+# 忽略文档字符串
+ignore-docstrings=yes
+
+# 忽略导入
+ignore-imports=no
+
+[SPELLING]
+# 拼写检查字典
+spelling-dict=
+
+# 拼写检查的私有字典文件
+spelling-private-dict-file=
+
+# 拼写检查存储文件
+spelling-store-unknown-words=no
+
+[TYPECHECK]
+# 忽略的类
+ignored-classes=optparse.Values,thread._local,_thread._local
+
+# 忽略的模块
+ignored-modules=
+
+# 生成缺失成员的提示
+generated-members=
+
+# 上下文管理器
+contextmanager-decorators=contextlib.contextmanager
+
+[VARIABLES]
+# 告诉pylint哪些变量名可以被重新定义
+redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
+
+# 初始化导入
+init-import=no
+
+# 虚拟变量的正则表达式
+dummy-variables-rgx=_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)|dummy|^ignored_|^unused_
+
+# 回调的参数名
+callbacks=cb_,
+          _cb
+
+[CLASSES]
+# 有效的类装饰器名称列表
+valid-classmethod-first-arg=cls
+
+# 有效的元类装饰器名称列表
+valid-metaclass=type
+
+# 排除受保护的成员访问检查的成员名称列表
+exclude-protected=_asdict,
+                  _fields,
+                  _replace,
+                  _source,
+                  _make
+
+[DESIGN]
+# 最大参数数量
+max-args=5
+
+# 最大局部变量数量
+max-locals=15
+
+# 最大返回语句数量
+max-returns=6
+
+# 最大分支数量
+max-branches=12
+
+# 最大语句数量
+max-statements=50
+
+# 最大父类数量
+max-parents=7
+
+# 最大属性数量
+max-attributes=7
+
+# 最小公共方法数量
+min-public-methods=2
+
+# 最大公共方法数量
+max-public-methods=20
+
+# 最大布尔表达式数量
+max-bool-expr=5
+
+[IMPORTS]
+# 已弃用的模块
+deprecated-modules=optparse,tkinter.tix
+
+# 导入图
+import-graph=
+
+# 外部导入图
+ext-import-graph=
+
+# 内部导入图
+int-import-graph=
+
+# 强制导入顺序
+known-standard-library=
+
+# 强制导入顺序
+known-third-party=
+
+# 分析回退导入
+analyse-fallback-blocks=no
+
+[EXCEPTIONS]
+# 可以在except语句中使用的异常
+overgeneral-exceptions=BaseException,
+                       Exception

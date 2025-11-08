@@ -1,0 +1,51 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #3b82f6;
+  --danger: #ef4444;
+  --border: #1f2937;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+}
+header h1 { margin: 0; font-size: 20px; }
+.env { display: flex; gap: 8px; align-items: center; }
+.env input { padding: 6px 8px; background: var(--panel); border: 1px solid var(--border); color: var(--text); }
+.env button { padding: 6px 10px; }
+
+main { padding: 16px 24px; display: grid; gap: 24px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.actions { display: flex; gap: 8px; }
+.primary { background: var(--primary); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+.danger { background: var(--danger); color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+button { background: var(--panel); color: var(--text); border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; cursor: pointer; }
+button:hover { filter: brightness(1.1); }
+
+.upload { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.form-row { display: grid; grid-template-columns: 160px 1fr; gap: 8px; align-items: center; margin-bottom: 12px; }
+.form-row input, .form-row textarea { background: #0b1220; border: 1px solid var(--border); color: var(--text); padding: 8px; border-radius: 6px; }
+
+.table-wrapper { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+thead { background: #0b1220; }
+th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+tr:hover td { background: #0b1220; }
+
+footer { padding: 12px 24px; border-top: 1px solid var(--border); color: var(--muted); }
+
+.muted { color: var(--muted); font-size: 12px; }
+.hidden { display: none; }
