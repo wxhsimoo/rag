@@ -27,8 +27,11 @@ docker/                # Dockerfile 与 Compose、Nginx 配置
 - 端口可用：`80`（前端）与 `8000`（后端 API）
 - 宿主机准备目录 `/data`（用于持久化文档与索引）
 
+### 修改配置
+- 修改config.yaml进行配置
+
 ### 构建镜像
-在项目根目录或 `docker/` 目录执行：
+在 `docker/` 目录执行：
 
 ```bash
 # 在 docker 目录中
@@ -59,3 +62,6 @@ docker compose up -d
 
 ## 📖 接口文档
 参见完整接口说明文档：[`docs/API.md`](./docs/API.md)
+
+## 📖 技术方案
+参见完整技术方案文档：[`docs/TECHNICAL_DESIGN.md`](./docs/TECHNICAL_DESIGN.md)
