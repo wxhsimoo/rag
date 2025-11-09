@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-婴幼儿营养RAG系统启动脚本
+RAG系统启动脚本
 
 使用方法:
     python run.py                    # 使用默认配置启动
@@ -50,31 +50,6 @@ def setup_logging(log_level: str = "INFO", log_file: str = None):
             compression="zip"
         )
 
-
-def check_dependencies():
-    """检查必要的依赖是否已安装"""
-    required_packages = [
-        "fastapi",
-        "uvicorn",
-        "pydantic",
-        "sentence_transformers",
-        "faiss",
-        "numpy"
-    ]
-    
-    missing_packages = []
-    for package in required_packages:
-        try:
-            __import__(package.replace("-", "_"))
-        except ImportError:
-            missing_packages.append(package)
-    
-    if missing_packages:
-        logger.error(f"缺少必要的依赖包: {', '.join(missing_packages)}")
-        logger.error("请运行: pip install -r requirements.txt")
-        sys.exit(1)
-
-
 async def initialize_system(config):
     """初始化系统组件"""
     logger.info("正在初始化系统组件...")
@@ -99,7 +74,7 @@ async def initialize_system(config):
 def main():
     """主函数"""
     parser = argparse.ArgumentParser(
-        description="婴幼儿营养RAG系统",
+        description="RAG",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例用法:
@@ -148,19 +123,8 @@ def main():
         "--log-file",
         help="日志文件路径"
     )
-    parser.add_argument(
-        "--check-deps",
-        action="store_true",
-        help="检查依赖并退出"
-    )
     
     args = parser.parse_args()
-    
-    # 检查依赖
-    if args.check_deps:
-        check_dependencies()
-        logger.info("所有依赖检查通过")
-        return
     
     try:
         # 加载配置
@@ -170,10 +134,6 @@ def main():
         # 设置日志
         log_level = args.log_level or config.app.log_level
         setup_logging(log_level, args.log_file)
-        
-        # 检查依赖
-        check_dependencies()
-        
         
         # 初始化系统
         asyncio.run(initialize_system(config))

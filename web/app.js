@@ -1,9 +1,15 @@
 (() => {
-  let BASE_URL = 'http://localhost:8000';
+  // 基础后端地址（不包含 /api 前缀）
+  let BASE_ORIGIN = (window.location.origin || 'http://localhost:8000').replace(/\/$/, '');
 
   const els = {
     baseUrl: document.getElementById('baseUrl'),
     applyBaseUrl: document.getElementById('applyBaseUrl'),
+    // tabs
+    tabManage: document.getElementById('tabManage'),
+    tabQA: document.getElementById('tabQA'),
+    panelManage: document.getElementById('panelManage'),
+    panelQA: document.getElementById('panelQA'),
     refreshListBtn: document.getElementById('refreshListBtn'),
     initIndexBtn: document.getElementById('initIndexBtn'),
     uploadForm: document.getElementById('uploadForm'),
@@ -11,20 +17,55 @@
     indexResultBody: document.querySelector('#indexResultTable tbody'),
     docDetailWrapper: document.getElementById('docDetailWrapper'),
     docDetailBody: document.querySelector('#docDetailTable tbody'),
+    // QA
+    qaForm: document.getElementById('qaForm'),
+    qaQuestion: document.getElementById('qaQuestion'),
+    qaTopK: document.getElementById('qaTopK'),
+    qaSessionId: document.getElementById('qaSessionId'),
+    qaOutputQuestion: document.getElementById('qaOutputQuestion'),
+    qaOutputAnswer: document.getElementById('qaOutputAnswer'),
+    qaSourcesWrapper: document.getElementById('qaSourcesWrapper'),
+    qaSourcesBody: document.getElementById('qaSourcesBody'),
   };
 
-  // Apply backend base URL
+  // 初始化输入框显示当前推断的后端地址
+  if (els.baseUrl) {
+    try {
+      els.baseUrl.value = BASE_ORIGIN;
+    } catch {}
+  }
+
+  // 应用手动设置的后端地址（自动去除末尾的 / 和输入中包含的 /api 前缀）
   els.applyBaseUrl.addEventListener('click', () => {
     const url = (els.baseUrl.value || '').trim();
     if (!url) return alert('请输入后端地址');
-    BASE_URL = url.replace(/\/$/, '');
-    alert(`后端地址已设置为：${BASE_URL}`);
+    // 去掉可能误填的 /api 前缀，统一由代码附加
+    BASE_ORIGIN = url.replace(/\/$/, '').replace(/\/api\/?$/, '');
+    alert(`后端地址已设置为：${BASE_ORIGIN}/api`);
   });
 
   // Fetch helper
   async function api(path, options = {}) {
-    const url = `${BASE_URL}${path}`;
-    const res = await fetch(url, options);
+    // 统一加上 /api 前缀
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const url = `${BASE_ORIGIN}/api${cleanPath}`;
+    // 设置超时（默认 600s）
+    const controller = new AbortController();
+    const timeoutMs = Number(options.timeoutMs ?? 600000);
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    let res;
+    try {
+      const fetchOptions = { ...options, signal: controller.signal };
+      res = await fetch(url, fetchOptions);
+    } catch (err) {
+      clearTimeout(timer);
+      if (err && err.name === 'AbortError') {
+        throw new Error('请求超时（600s）');
+      }
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
     if (!res.ok) {
       const msg = await res.text();
       throw new Error(`请求失败 ${res.status}: ${msg}`);
@@ -176,6 +217,70 @@
   // 绑定刷新
   els.refreshListBtn.addEventListener('click', fetchDocuments);
 
+  // Tab 切换
+  els.tabManage.addEventListener('click', () => switchTab('manage'));
+  els.tabQA.addEventListener('click', () => switchTab('qa'));
+  function switchTab(which) {
+    const isManage = which === 'manage';
+    els.tabManage.classList.toggle('active', isManage);
+    els.tabQA.classList.toggle('active', !isManage);
+    els.panelManage.classList.toggle('hidden', !isManage);
+    els.panelQA.classList.toggle('hidden', isManage);
+  }
+
+  // 问答：POST /query
+  els.qaForm.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const question = (els.qaQuestion.value || '').trim();
+    const topK = Number(els.qaTopK.value || 5);
+    const sessionId = (els.qaSessionId.value || '').trim() || null;
+    if (!question) {
+      alert('请输入问题');
+      return;
+    }
+    try {
+      const body = {
+        question,
+        user_profile: null,
+        session_id: sessionId,
+        top_k: topK,
+      };
+      const resp = await api('/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      renderQAOutput(question, resp);
+    } catch (e) {
+      console.error(e);
+      alert(`提问失败：${e.message}`);
+    }
+  });
+
+  function renderQAOutput(question, resp) {
+    els.qaOutputQuestion.textContent = question;
+    const answer = resp?.answer ?? resp?.error ?? '';
+    els.qaOutputAnswer.textContent = typeof answer === 'string' ? answer : JSON.stringify(answer);
+    const sources = Array.isArray(resp?.sources) ? resp.sources : [];
+    els.qaSourcesBody.innerHTML = '';
+    if (sources.length) {
+      els.qaSourcesWrapper.style.display = 'block';
+      sources.forEach(s => {
+        const tr = document.createElement('tr');
+        const summary = (s.content || '').slice(0, 200);
+        tr.innerHTML = `
+          <td class="mono">${escapeHtml(s.id)}</td>
+          <td>${escapeHtml(String(s.score ?? ''))}</td>
+          <td class="mono">${escapeHtml(summary)}</td>
+        `;
+        els.qaSourcesBody.appendChild(tr);
+      });
+    } else {
+      els.qaSourcesWrapper.style.display = 'none';
+    }
+  }
+
   // 初始化加载
   fetchDocuments();
+  switchTab('manage');
 })();

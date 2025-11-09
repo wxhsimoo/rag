@@ -260,13 +260,21 @@ async def init_vector_index():
     - 无需任何入参
     """
     container = get_app_container()
+    logger = getattr(container, "logger", None)
+    start_time = datetime.now()
+    if logger:
+        logger.info("[API] /index/init 请求进入，开始初始化向量索引")
     
     # 获取服务
     svcIndexing = container._indexing_service
     doc_svc = container._document_storage_management_service
 
     # 获取文件
+    if logger:
+        logger.info("[API] /index/init 开始列出待索引文档")
     items = await doc_svc.list_documents()
+    if logger:
+        logger.info(f"[API] /index/init 文档列表获取完成，数量={len(items)}")
 
     base_path = Path(container.config.storage.documents.local.base_path)
     file_paths: List[str] = []
@@ -276,11 +284,14 @@ async def init_vector_index():
         if not filename:
             continue
         full_path = base_path / filename
-        print(full_path)
+        if logger:
+            logger.debug(f"[API] /index/init 发现文件: {full_path}")
         file_paths.append(str(full_path))
 
     # 若没有可用文件，直接返回提示
     if not file_paths:
+        if logger:
+            logger.warning("[API] /index/init 未发现可用于索引的文件，直接返回")
         return {
             "success": True,
             "message": "未找到可用于索引的支持文件",
@@ -289,5 +300,21 @@ async def init_vector_index():
         }
 
     # 构建索引（初始化通常重建索引）
-    result = await svcIndexing.build_index(file_paths, force_rebuild=True)
-    return result
+    if logger:
+        logger.info(f"[API] /index/init 开始构建索引，文件数={len(file_paths)}，force_rebuild=True")
+    try:
+        result = await svcIndexing.build_index(file_paths, force_rebuild=True)
+        end_time = datetime.now()
+        duration = (end_time - start_time).total_seconds()
+        if logger:
+            logger.info(
+                f"[API] /index/init 索引构建完成：success={result.get('success')}, processed={result.get('documents_processed')}, "
+                f"processing_time={result.get('processing_time')}s, api_duration={duration}s"
+            )
+        return result
+    except Exception as e:
+        end_time = datetime.now()
+        duration = (end_time - start_time).total_seconds()
+        if logger:
+            logger.error(f"[API] /index/init 索引构建异常：{str(e)}，api_duration={duration}s")
+        raise

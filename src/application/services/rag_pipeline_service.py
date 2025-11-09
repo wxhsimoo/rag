@@ -159,7 +159,7 @@ class RAGPipelineService:
             相关文档列表
         """
         try:
-            # 通用查询（不再做宝宝辅食相关增强）
+            # 通用查询
             enhanced_query = self._enhance_query(question)
             
             # 生成查询向量
