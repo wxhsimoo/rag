@@ -25,11 +25,18 @@ class ServerConfig:
 @dataclass
 class AppConfig:
     """应用配置"""
-    name: str = "婴幼儿营养RAG系统"
+    name: str = "RAG系统"
     version: str = "1.0.0"
-    environment: str = "development"
-    debug: bool = True
-    log_level: str = "INFO"
+    # 移除 environment/debug/log_level，改为仅保留基础信息
+
+
+@dataclass
+class LoggingConfig:
+    """日志配置"""
+    level: str = "INFO"
+    file_path: str = ""
+    max_file_size_mb: int = 100
+    backup_count: int = 5
 
 
 @dataclass
@@ -172,50 +179,6 @@ class RAGConfig:
     conversation: ConversationConfig = field(default_factory=ConversationConfig)
 
 
-@dataclass
-class NutritionRulesConfig:
-    """营养规则配置"""
-    default_rules_enabled: bool = True
-    strict_mode: bool = True
-
-
-@dataclass
-class AlgorithmConfig:
-    """推荐算法配置"""
-    weight_relevance: float = 0.4
-    weight_safety: float = 0.3
-    weight_nutrition: float = 0.2
-    weight_age_suitability: float = 0.1
-
-
-@dataclass
-class ResultsConfig:
-    """推荐结果配置"""
-    max_recommendations: int = 10
-    min_score: float = 0.5
-    diversity_factor: float = 0.8
-
-
-@dataclass
-class FoodRecommendationConfig:
-    """食物推荐配置"""
-    algorithm: AlgorithmConfig = field(default_factory=AlgorithmConfig)
-    results: ResultsConfig = field(default_factory=ResultsConfig)
-
-
-@dataclass
-class CacheItemConfig:
-    """缓存项配置"""
-    enabled: bool = True
-    max_size: int = 1000
-    ttl_seconds: int = 3600
-
-
-@dataclass
-class CacheConfig:
-    """缓存配置"""
-    embedding_cache: CacheItemConfig = field(default_factory=CacheItemConfig)
-    query_cache: CacheItemConfig = field(default_factory=lambda: CacheItemConfig(max_size=500, ttl_seconds=1800))
 
 
 @dataclass
@@ -225,15 +188,6 @@ class CORSConfig:
     allow_methods: list = field(default_factory=lambda: ["GET", "POST", "PUT", "DELETE"])
     allow_headers: list = field(default_factory=lambda: ["*"])
 
-
-@dataclass
-class SecurityConfig:
-    """安全配置"""
-    cors: CORSConfig = field(default_factory=CORSConfig)
-
-
-
-
 @dataclass
 class Config:
     """主配置类"""
@@ -242,10 +196,7 @@ class Config:
     ai_providers: AIProvidersConfig = field(default_factory=AIProvidersConfig)
     storage: StorageConfig = field(default_factory=StorageConfig)
     rag: RAGConfig = field(default_factory=RAGConfig)
-    nutrition_rules: NutritionRulesConfig = field(default_factory=NutritionRulesConfig)
-    food_recommendation: FoodRecommendationConfig = field(default_factory=FoodRecommendationConfig)
-    cache: CacheConfig = field(default_factory=CacheConfig)
-    security: SecurityConfig = field(default_factory=SecurityConfig)
+    logging: LoggingConfig = field(default_factory=LoggingConfig)
     
 
 class ConfigManager:
@@ -265,7 +216,6 @@ class ConfigManager:
         """加载配置文件"""
         try:
             if self.config_path.exists():
-                logger.info(f"加载配置文件: {self.config_path}")
                 with open(self.config_path, 'r', encoding='utf-8') as f:
                     config_data = yaml.safe_load(f)
                 self._config = self._create_config_from_dict(config_data or {})
@@ -291,9 +241,16 @@ class ConfigManager:
             config.app = AppConfig(
                 name=app_data.get('name', config.app.name),
                 version=app_data.get('version', config.app.version),
-                environment=app_data.get('environment', config.app.environment),
-                debug=app_data.get('debug', config.app.debug),
-                log_level=app_data.get('log_level', config.app.log_level)
+            )
+        
+        # 日志配置
+        if 'logging' in data:
+            logging_data = data['logging']
+            config.logging = LoggingConfig(
+                level=logging_data.get('level', config.logging.level),
+                file_path=logging_data.get('file_path', config.logging.file_path),
+                max_file_size_mb=logging_data.get('max_file_size_mb', config.logging.max_file_size_mb),
+                backup_count=logging_data.get('backup_count', config.logging.backup_count),
             )
         
         # 服务器配置
@@ -416,27 +373,51 @@ class ConfigManager:
         if not self._config:
             return
         
-        # 应用环境
-        if env_val := os.getenv('ENVIRONMENT'):
-            self._config.app.environment = env_val
+        # 应用环境：已移除对 app.environment 的覆盖
         
         # 服务器配置
-        if env_val := os.getenv('HOST'):
+        env_val = os.getenv('HOST')
+        if env_val:
             self._config.server.host = env_val
-        if env_val := os.getenv('PORT'):
+        env_val = os.getenv('PORT')
+        if env_val:
             try:
                 self._config.server.port = int(env_val)
             except ValueError:
                 logger.warning(f"无效的端口号: {env_val}")
         
         # OpenAI API密钥
-        if env_val := os.getenv('OPENAI_API_KEY'):
+        env_val = os.getenv('OPENAI_API_KEY')
+        if env_val:
             self._config.ai_providers.embedding.openai.api_key = env_val
             self._config.ai_providers.llm.openai.api_key = env_val
         
         # 日志级别
-        if env_val := os.getenv('LOG_LEVEL'):
-            self._config.app.log_level = env_val
+        env_val = os.getenv('LOG_LEVEL')
+        if env_val:
+            # 仅更新日志配置
+            self._config.logging.level = env_val
+
+        # 日志文件路径
+        env_val = os.getenv('LOG_FILE_PATH')
+        if env_val:
+            self._config.logging.file_path = env_val
+
+        # 日志文件最大尺寸（MB）
+        env_val = os.getenv('LOG_MAX_FILE_SIZE_MB')
+        if env_val:
+            try:
+                self._config.logging.max_file_size_mb = int(env_val)
+            except ValueError:
+                logger.warning(f"无效的日志最大文件大小: {env_val}")
+
+        # 日志备份文件数量
+        env_val = os.getenv('LOG_BACKUP_COUNT')
+        if env_val:
+            try:
+                self._config.logging.backup_count = int(env_val)
+            except ValueError:
+                logger.warning(f"无效的日志备份数量: {env_val}")
     
     def get_config(self) -> Config:
         """获取配置对象"""
@@ -485,9 +466,8 @@ class ConfigManager:
         """获取环境信息"""
         config = self.get_config()
         return {
-            "environment": config.app.environment,
-            "debug": config.app.debug,
             "version": config.app.version,
+            "log_level": config.logging.level,
             "python_version": os.sys.version,
             "config_path": str(self.config_path),
             "config_exists": self.config_path.exists()
@@ -502,7 +482,9 @@ def get_config_manager(config_path: str = "config.yaml") -> ConfigManager:
     """获取全局配置管理器实例"""
     global _config_manager
     if _config_manager is None:
-        _config_manager = ConfigManager(config_path)
+        # 支持通过环境变量覆盖配置路径
+        env_path = os.getenv("CONFIG_PATH") or config_path
+        _config_manager = ConfigManager(env_path)
     return _config_manager
 
 

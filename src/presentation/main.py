@@ -48,8 +48,8 @@ async def lifespan(app: FastAPI):
 
 # 创建FastAPI应用
 app = FastAPI(
-    title="婴幼儿营养RAG系统",
-    description="基于DDD架构的婴幼儿营养咨询和食物推荐系统",
+    title="RAG系统",
+    description="基于DDD架构的RAG系统",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -72,7 +72,7 @@ app.include_router(
 async def root():
     """根路径 - 返回系统信息"""
     return {
-        "message": "婴幼儿营养RAG系统",
+        "message": "RAG系统",
         "version": "1.0.0",
         "status": "running",
         "docs_url": "/docs",

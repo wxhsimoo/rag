@@ -1,8 +1,10 @@
 from typing import Optional, Dict, Any
+import sys
+from loguru import logger
 from functools import lru_cache
 
 from ..infrastructure.log.logger_service import LoggerService
-from ..infrastructure.config.config_manager import Config
+from ..infrastructure.config.config_manager import Config, get_config
 from .service_factory import DDDServiceFactory
 from ..application.services.rag_pipeline_service import RAGPipelineService
 from ..application.services.indexing_service import IndexingService
@@ -18,9 +20,19 @@ class ApplicationContainer:
     _indexing_service: Optional[IndexingService] = None
 
     def __init__(self, config: Optional[Config] = None, logger: Optional[LoggerService] = None):
+        # 迁移自 run.py 的配置加载与日志初始化
         if config is None:
-            raise ValueError("配置对象不能为空，请传入有效的配置实例")
+            config = get_config()
         self.config = config
+
+        # 基于配置初始化全局日志（loguru）
+        try:
+            self._setup_global_logging(self.config)
+        except Exception:
+            # 日志初始化失败不阻塞启动，仅输出到控制台
+            pass
+
+        # 初始化应用层日志服务
         self.logger = logger
         try:
             service_factory = DDDServiceFactory(config)
@@ -30,6 +42,32 @@ class ApplicationContainer:
         except Exception as e:
             raise
 
+    def _setup_global_logging(self, config: Config) -> None:
+        """根据配置初始化 loguru 全局日志器"""
+        # 清理默认处理器
+        logger.remove()
+
+        # 控制台处理器
+        level = getattr(config.logging, 'level', 'INFO') or 'INFO'
+        logger.add(
+            sys.stdout,
+            level=level,
+            format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+            colorize=True
+        )
+
+        # 文件处理器（可选）
+        file_path = getattr(config.logging, 'file_path', None)
+        if isinstance(file_path, str) and file_path:
+            rotation_mb = getattr(config.logging, 'max_file_size_mb', 10) or 10
+            logger.add(
+                file_path,
+                level=level,
+                format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}",
+                rotation=f"{rotation_mb} MB",
+                retention="7 days",
+                compression="zip"
+            )
     
     async def health_check(self) -> Dict[str, Any]:
         """健康检查

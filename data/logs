@@ -1,0 +1,4 @@
+2025-11-09 17:44:31,706 - MainApplication - ERROR - 清理应用容器资源失败: 'ApplicationContainer' object has no attribute '_vector_store_service'
+2025-11-09 18:00:27,549 - LocalDocumentStorageProvider - WARNING - LocalStorage: id_map.json not found at data/storage/id_map.json
+2025-11-09 18:00:27,549 - MainApplication - WARNING - [API] /index/init 未发现可用于索引的文件，直接返回
+2025-11-09 18:03:13,847 - MainApplication - ERROR - 清理应用容器资源失败: 'ApplicationContainer' object has no attribute '_vector_store_service'

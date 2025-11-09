@@ -34,9 +34,6 @@ docker/                # Dockerfile 与 Compose、Nginx 配置
 # 在 docker 目录中
 cd docker
 docker compose build
-
-# 或在项目根目录中指定 compose 文件
-docker compose -f docker/docker-compose.yml build
 ```
 
 说明：
@@ -46,10 +43,8 @@ docker compose -f docker/docker-compose.yml build
 ### 启动容器
 ```bash
 # 在 docker 目录中
+cd docker
 docker compose up -d
-
-# 或在项目根目录中指定 compose 文件
-docker compose -f docker/docker-compose.yml up -d
 ```
 
 启动后：

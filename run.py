@@ -22,54 +22,8 @@ from loguru import logger
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-from src.infrastructure.config.config_manager import ConfigManager
 from src.presentation.main import create_app
-
-
-def setup_logging(log_level: str = "INFO", log_file: str = None):
-    """配置日志系统"""
-    # 移除默认的日志处理器
-    logger.remove()
-    
-    # 添加控制台日志处理器
-    logger.add(
-        sys.stdout,
-        level=log_level,
-        format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-        colorize=True
-    )
-    
-    # 如果指定了日志文件，添加文件日志处理器
-    if log_file:
-        logger.add(
-            log_file,
-            level=log_level,
-            format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}",
-            rotation="10 MB",
-            retention="7 days",
-            compression="zip"
-        )
-
-async def initialize_system(config):
-    """初始化系统组件"""
-    logger.info("正在初始化系统组件...")
-    
-    try:
-        # 这里可以添加系统初始化逻辑
-        # 例如：预加载模型、初始化向量数据库等
-        
-        # 检查AI服务配置
-        if config.ai_providers.embedding.provider == "openai":
-            api_key = config.ai_providers.embedding.openai.api_key
-            if not api_key or api_key == "your-openai-api-key-here":
-                logger.warning("OpenAI API密钥未配置，某些功能可能无法正常工作")
-        
-        logger.info("系统组件初始化完成")
-        
-    except Exception as e:
-        logger.error(f"系统初始化失败: {e}")
-        raise
-
+from src.infrastructure.config.config_manager import get_config
 
 def main():
     """主函数"""
@@ -80,77 +34,34 @@ def main():
 示例用法:
   python run.py                        # 默认配置启动
   python run.py --config custom.yaml   # 自定义配置启动
-  python run.py --port 8080           # 指定端口
-  python run.py --reload              # 开发模式
-  python run.py --workers 4           # 指定worker数量
         """
     )
-    
     parser.add_argument(
         "--config", 
         default="config.yaml",
         help="配置文件路径 (默认: config.yaml)"
     )
-    parser.add_argument(
-        "--host",
-        default=None,
-        help="服务器主机地址"
-    )
-    parser.add_argument(
-        "--port",
-        type=int,
-        default=None,
-        help="服务器端口"
-    )
-    parser.add_argument(
-        "--reload",
-        action="store_true",
-        help="启用自动重载（开发模式）"
-    )
-    parser.add_argument(
-        "--workers",
-        type=int,
-        default=None,
-        help="Worker进程数量"
-    )
-    parser.add_argument(
-        "--log-level",
-        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-        default=None,
-        help="日志级别"
-    )
-    parser.add_argument(
-        "--log-file",
-        help="日志文件路径"
-    )
-    
+
     args = parser.parse_args()
     
     try:
-        # 加载配置
-        config_manager = ConfigManager(args.config)
-        config = config_manager.get_config()
-        
-        # 设置日志
-        log_level = args.log_level or config.app.log_level
-        setup_logging(log_level, args.log_file)
-        
-        # 初始化系统
-        asyncio.run(initialize_system(config))
-        
+        config = get_config()
+
         # 创建FastAPI应用
         app = create_app()
-        # 启动服务器
-        # 确定服务器配置
-        reload = args.reload or (config.server.reload if hasattr(config.server, 'reload') else False)
-        workers = args.workers or (config.server.workers if hasattr(config.server, 'workers') else 1)
+
+        reload = getattr(config.server, 'reload', False)
+        workers = getattr(config.server, 'workers', 1)
         # 在生产环境中禁用reload和多worker同时使用
         if reload and workers > 1:
             logger.warning("reload模式下不支持多worker，将使用单worker")
             workers = 1
 
-        host = args.host or config.server.host
-        port = args.port or config.server.port
+        host =  getattr(config.server, 'host', '0.0.0.0')
+        port = getattr(config.server, 'port', 8000)
+
+        # 统一的uvicorn日志级别（优先环境变量，其次配置，默认INFO）
+        uvicorn_log_level = (os.getenv("UVICORN_LOG_LEVEL") or os.getenv("LOG_LEVEL") or getattr(config.logging, 'level', 'INFO')).lower()
         
         if reload:
             # 使用导入字符串启用 reload 功能
@@ -159,7 +70,7 @@ def main():
                 host=host,
                 port=port,
                 reload=reload,
-                log_level=log_level.lower(),
+                log_level=uvicorn_log_level,
                 access_log=True,
                 factory=True
             )
@@ -170,7 +81,7 @@ def main():
                 host=host,
                 port=port,
                 workers=workers,
-                log_level=log_level.lower(),
+                log_level=uvicorn_log_level,
                 access_log=True
             )
         

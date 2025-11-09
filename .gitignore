@@ -1,0 +1,58 @@
+# Python cache and artifacts
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+.env.*
+
+# Packaging/build
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.whl
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Type checking & linters
+.mypy_cache/
+.pytype/
+.ruff_cache/
+
+# IDE/editor
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+logs/
+data/logs/
+
+# Local data (documents, indexes)
+data/storage/
+data/vector_index/
+data/**/*.tmp
+data/**/*.cache
+data/**/*.bak
+
+# Config variants & secrets
+config.local.yaml
+*.secret*
+*.key
+*.pem
+
+# Node (if present)
+node_modules/
